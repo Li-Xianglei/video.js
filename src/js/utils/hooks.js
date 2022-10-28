@@ -21,6 +21,7 @@ const hooks_ = {};
 const hooks = function(type, fn) {
   hooks_[type] = hooks_[type] || [];
   if (fn) {
+    // 把fn连接到数组后面
     hooks_[type] = hooks_[type].concat(fn);
   }
   return hooks_[type];

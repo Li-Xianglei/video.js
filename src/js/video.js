@@ -132,6 +132,7 @@ const normalizeId = (id) => id.indexOf('#') === 0 ? id.slice(1) : id;
  *         The `videojs()` function returns a {@link Player|Player} instance.
  */
 function videojs(id, options, ready) {
+  // 获取已经创建的player，有则直接返回
   let player = videojs.getPlayer(id);
 
   if (player) {
@@ -167,7 +168,7 @@ function videojs(id, options, ready) {
   if (options.restoreEl === true) {
     options.restoreEl = (el.parentNode && el.parentNode.hasAttribute('data-vjs-player') ? el.parentNode : el).cloneNode(true);
   }
-
+  // hooks方式，添加插件中的方法
   hooks('beforesetup').forEach((hookFunction) => {
     const opts = hookFunction(el, mergeOptions(options));
 

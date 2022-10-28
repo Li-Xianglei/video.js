@@ -468,7 +468,10 @@ class Player extends Component {
 
     // check plugins
     if (options.plugins) {
+      // Object.keys:枚举给定对象的属性
+      // 枚举options.plugins的属性
       Object.keys(options.plugins).forEach((name) => {
+        // 属性必须是函数
         if (typeof this[name] !== 'function') {
           throw new Error(`plugin "${name}" does not exist`);
         }
@@ -509,6 +512,7 @@ class Player extends Component {
     // Load plugins
     if (options.plugins) {
       Object.keys(options.plugins).forEach((name) => {
+        // 将plugins中的函数插入到Object中
         this[name](options.plugins[name]);
       });
     }
@@ -5441,5 +5445,6 @@ TECH_EVENTS_RETRIGGER.forEach(function(event) {
  *         Whether or not this player is using the requested plugin.
  */
 
+// 向videojs注册component
 Component.registerComponent('Player', Player);
 export default Player;
